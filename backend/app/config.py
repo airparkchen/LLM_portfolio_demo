@@ -10,11 +10,12 @@ class Settings(BaseSettings):
 
     # Ollama settings
     OLLAMA_BASE_URL: str = "http://localhost:11434"
-    DEFAULT_MODEL: str = "llama3.2"
+    DEFAULT_MODEL: str = "qwen3:1.7b"
 
     # Available models configuration
     # Format: "model_name:display_name:description"
     AVAILABLE_MODELS: List[str] = [
+        "qwen3:1.7b:Qwen3 1.7B:Alibaba's efficient small model",
         "llama3.2:Llama 3.2:Meta's latest lightweight model",
         "mistral:Mistral 7B:Efficient and powerful 7B model",
     ]
@@ -29,7 +30,8 @@ class Settings(BaseSettings):
     VECTORSTORE_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "vectorstore")
 
     # Embedding model (using Ollama)
-    EMBEDDING_MODEL: str = "nomic-embed-text"
+    # Use qwen3 for embedding as well, or install nomic-embed-text
+    EMBEDDING_MODEL: str = "qwen3:1.7b"
 
     class Config:
         env_file = ".env"
