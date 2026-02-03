@@ -33,13 +33,11 @@ export default function Resume() {
       <header className="resume-header">
         <div className="header-content">
           <h1>Parker Chen</h1>
-          <p className="tagline">Software Engineer | AI Enthusiast</p>
+          <p className="tagline">Software RD Engineer | AI Application Engineer</p>
           <div className="contact-info">
-            <span>parker.chen@email.com</span>
+            <span>airparkchen@gmail.com</span>
             <span>|</span>
-            <span>LinkedIn</span>
-            <span>|</span>
-            <span>GitHub</span>
+            <span>Contact: +886 976342908</span>
           </div>
         </div>
         <div className="system-status">
