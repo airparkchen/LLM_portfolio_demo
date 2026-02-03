@@ -21,9 +21,12 @@ class Settings(BaseSettings):
     ]
 
     # RAG settings
-    CHUNK_SIZE: int = 500
-    CHUNK_OVERLAP: int = 50
-    TOP_K_RESULTS: int = 3
+    # CHUNK_SIZE: larger = more context per chunk, but may miss fine details
+    # CHUNK_OVERLAP: larger = less info loss between chunks
+    # TOP_K_RESULTS: more = richer context, but may include less relevant info
+    CHUNK_SIZE: int = 800
+    CHUNK_OVERLAP: int = 100
+    TOP_K_RESULTS: int = 5
 
     # Paths
     RESUME_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "resume")
