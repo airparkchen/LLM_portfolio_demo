@@ -30,8 +30,8 @@ class Settings(BaseSettings):
     VECTORSTORE_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "vectorstore")
 
     # Embedding model (using Ollama)
-    # Use qwen3 for embedding as well, or install nomic-embed-text
-    EMBEDDING_MODEL: str = "qwen3:1.7b"
+    # nomic-embed-text is optimized for embedding tasks
+    EMBEDDING_MODEL: str = "nomic-embed-text"
 
     class Config:
         env_file = ".env"
