@@ -1,6 +1,12 @@
+# Disable ChromaDB telemetry
 import os
+os.environ["ANONYMIZED_TELEMETRY"] = "False"
+os.environ["CHROMA_TELEMETRY"] = "False"
+
 from typing import List, Tuple, Optional
 import asyncio
+import chromadb
+from chromadb.config import Settings as ChromaSettings
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain.schema import Document
@@ -64,6 +70,13 @@ class RAGService:
         chroma_dir = os.path.join(self.vectorstore_dir, "chroma.sqlite3")
         return os.path.exists(chroma_dir)
 
+    def _get_chroma_client(self):
+        """Get ChromaDB client with telemetry disabled"""
+        return chromadb.Client(ChromaSettings(
+            anonymized_telemetry=False,
+            allow_reset=True
+        ))
+
     async def _load_vectorstore(self):
         """Load existing vectorstore from disk"""
         loop = asyncio.get_event_loop()
@@ -71,7 +84,8 @@ class RAGService:
             None,
             lambda: Chroma(
                 persist_directory=self.vectorstore_dir,
-                embedding_function=self.embeddings
+                embedding_function=self.embeddings,
+                client_settings=ChromaSettings(anonymized_telemetry=False)
             )
         )
 
@@ -93,7 +107,8 @@ class RAGService:
             lambda: Chroma.from_documents(
                 documents=chunks,
                 embedding=self.embeddings,
-                persist_directory=self.vectorstore_dir
+                persist_directory=self.vectorstore_dir,
+                client_settings=ChromaSettings(anonymized_telemetry=False)
             )
         )
 

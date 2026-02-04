@@ -10,25 +10,30 @@ class Settings(BaseSettings):
 
     # Ollama settings
     OLLAMA_BASE_URL: str = "http://localhost:11434"
-    DEFAULT_MODEL: str = "llama3.2"
+    DEFAULT_MODEL: str = "qwen3:1.7b"
 
     # Available models configuration
     # Format: "model_name:display_name:description"
     AVAILABLE_MODELS: List[str] = [
+        "qwen3:1.7b:Qwen3 1.7B:Alibaba's efficient small model",
         "llama3.2:Llama 3.2:Meta's latest lightweight model",
         "mistral:Mistral 7B:Efficient and powerful 7B model",
     ]
 
     # RAG settings
-    CHUNK_SIZE: int = 500
-    CHUNK_OVERLAP: int = 50
-    TOP_K_RESULTS: int = 3
+    # CHUNK_SIZE: larger = more context per chunk, but may miss fine details
+    # CHUNK_OVERLAP: larger = less info loss between chunks
+    # TOP_K_RESULTS: more = richer context, but may include less relevant info
+    CHUNK_SIZE: int = 800
+    CHUNK_OVERLAP: int = 100
+    TOP_K_RESULTS: int = 5
 
     # Paths
     RESUME_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "resume")
     VECTORSTORE_DIR: str = os.path.join(os.path.dirname(os.path.dirname(__file__)), "vectorstore")
 
     # Embedding model (using Ollama)
+    # nomic-embed-text is optimized for embedding tasks
     EMBEDDING_MODEL: str = "nomic-embed-text"
 
     class Config:
