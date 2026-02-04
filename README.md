@@ -2,7 +2,10 @@
 
 A local LLM-powered resume Q&A system using Ollama and RAG (Retrieval-Augmented Generation).
 
+<img width="1931" height="1217" alt="llm履歷 (1)" src="https://github.com/user-attachments/assets/440b7a8e-b25f-4551-9d9f-3cdc3bd1d6a7" />
+
 ## Features
+
 
 - **Local LLM Deployment**: Run LLM models locally via Ollama
 - **Model Switching**: Switch between different models (Llama 3.2, Mistral, custom GGUF models)
